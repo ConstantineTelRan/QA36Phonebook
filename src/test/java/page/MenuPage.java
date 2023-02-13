@@ -16,6 +16,9 @@ public class MenuPage extends BasePage {
     @FindBy(xpath = "//li//a[@href='/']")
     private WebElement contacts;
 
+    @FindBy(xpath = "//ul[@class='navbar-nav mr-auto']//li[2]")
+    private WebElement addContacts;
+
     @FindBy(xpath = "//select[@id='langSelect']")
     private WebElement selectLang;
 
@@ -24,5 +27,25 @@ public class MenuPage extends BasePage {
 
     public WebElement getAccountButton() {
         return accountButton;
+    }
+
+    public void getClickMenuLink(WebElement element) {
+        element.click();
+    }
+
+    public WebElement getLogOutButton() {
+        return logOutButton;
+    }
+
+    public WebElement getContacts() {
+        return contacts;
+    }
+
+    public WebElement getSelectLang() {
+        return selectLang;
+    }
+
+    public WebElement getAddContacts() {
+        return addContacts;
     }
 }

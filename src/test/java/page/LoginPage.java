@@ -44,7 +44,15 @@ public class LoginPage extends BasePage{
         return errorMsg;
     }
 
+    public WebElement getPasswordErrorMsg() {
+        return passwordErrorMsg;
+    }
+
     public String getErrorMsgText() {
         return errorMsg.getText();
+    }
+
+    public String getPasswordErrorMessage() {
+        return passwordErrorMsg.getText();
     }
 }
