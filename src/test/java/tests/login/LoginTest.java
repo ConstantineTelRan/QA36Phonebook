@@ -45,7 +45,7 @@ public class LoginTest extends BaseTest {
     public void loginTestWithoutPassword() {
         loginPage = new LoginPage(driver);
         loginPage.getAuth(email, "");
-
+        loginPage.appHeaderClick();
         Assert.assertTrue(loginPage.waitElementVisible(loginPage.getPasswordErrorMsg()));
         Assert.assertEquals(loginPage.getPasswordErrorMessage(), errorPasswordMessage,
                 "The actual text of error message does not matches the expected text");

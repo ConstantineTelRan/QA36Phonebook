@@ -33,6 +33,9 @@ public class LoginPage extends BasePage{
     @FindBy(xpath = "//h3[@data-value=\"Content Writing - May 2021\"]")
     private WebElement header;
 
+    @FindBy(xpath = "//div[@class=\"card-body\"]//h2")
+    WebElement appHeader;
+
     public void getAuth(String email, String password) {
         waitElementVisible(emailInput);
         type(emailInput, email);
@@ -54,5 +57,9 @@ public class LoginPage extends BasePage{
 
     public String getPasswordErrorMessage() {
         return passwordErrorMsg.getText();
+    }
+
+    public void appHeaderClick() {
+        appHeader.click();
     }
 }
