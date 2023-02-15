@@ -1,11 +1,11 @@
-package tests.login;
+package ui.tests.login;
 
 import com.github.javafaker.Faker;
 import org.testng.Assert;
 import org.testng.annotations.Test;
-import page.LoginPage;
-import page.MenuPage;
-import tests.BaseTest;
+import ui.page.LoginPage;
+import ui.page.MenuPage;
+import ui.tests.BaseTest;
 
 public class LoginTest extends BaseTest {
 
@@ -23,7 +23,7 @@ public class LoginTest extends BaseTest {
     String errorMessage = "Please check your activation or Login + Password combination";
     String errorPasswordMessage = "Password is required.";
 
-    @Test
+    @Test(groups = {"login_tests"})
     public void loginTest() {
         loginPage = new LoginPage(driver);
         loginPage.getAuth(email, password);
@@ -31,7 +31,7 @@ public class LoginTest extends BaseTest {
         Assert.assertTrue(menu.waitElementVisible(menu.getAccountButton()));
     }
 
-    @Test
+    @Test(groups = {"login_tests"})
     public void loginTestWithWrongEmailAndPassword() {
         loginPage = new LoginPage(driver);
         loginPage.getAuth(wrongEmail, wrongPassword);
@@ -41,7 +41,7 @@ public class LoginTest extends BaseTest {
                 "The actual text of error message does not matches the expected text");
     }
 
-    @Test
+    @Test(groups = {"login_tests"})
     public void loginTestWithoutPassword() {
         loginPage = new LoginPage(driver);
         loginPage.getAuth(email, "");
@@ -50,6 +50,5 @@ public class LoginTest extends BaseTest {
         Assert.assertEquals(loginPage.getPasswordErrorMessage(), errorPasswordMessage,
                 "The actual text of error message does not matches the expected text");
     }
-
 
 }

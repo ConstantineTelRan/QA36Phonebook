@@ -1,26 +1,20 @@
-package tests.contact;
+package ui.tests.contact;
 
 import com.github.javafaker.Faker;
 import org.testng.Assert;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import page.AddContact;
-import page.ContactPage;
-import page.LoginPage;
-import page.MenuPage;
-import tests.BaseTest;
+import ui.page.AddContact;
+import ui.page.ContactPage;
+import ui.page.MenuPage;
+import ui.tests.BaseTest;
 
 import java.util.Map;
 
 public class AddNewContactTest extends BaseTest {
     Faker faker = new Faker();
     MenuPage menu;
-    String email = "test@gmail.com";
-    String password = "test@gmail.com";
     AddContact addContact;
     ContactPage contactPage;
-    LoginPage loginPage;
-
     String firstName = faker.name().firstName();
     String lastName = faker.name().lastName();
     String about = faker.lorem().sentence(4);
@@ -28,13 +22,7 @@ public class AddNewContactTest extends BaseTest {
     Map<String, String> contactInfo;
 
 
-    @BeforeMethod
-    public void precondition() {
-        loginPage = new LoginPage(driver);
-        loginPage.getAuth(email, password);
-    }
-
-    @Test
+    @Test(groups = {"all_tests"})
     public void addNewContactTest() {
         addContact = new AddContact(driver);
         menu = new MenuPage(driver);
