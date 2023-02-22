@@ -3,7 +3,6 @@ package api.tests.contact;
 import api.enums.EndPoint;
 import api.model.AddContactDto;
 import api.tests.ApiBase;
-import com.github.javafaker.Faker;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.response.Response;
 import org.testng.Assert;
@@ -37,7 +36,6 @@ public class AddNewContactApiTest extends ApiBase {
         Assert.assertEquals(response.jsonPath().getString("firstName"), addContactDto.getFirstName());
         Assert.assertEquals(response.jsonPath().getString("lastName"), addContactDto.getLastName());
         Assert.assertEquals(response.jsonPath().getString("description"), addContactDto.getDescription());
-
     }
 
     @Test
@@ -59,7 +57,6 @@ public class AddNewContactApiTest extends ApiBase {
         actualValue.remove("id");
 
         Assert.assertEquals(actualValue, expectedValue);
-
     }
 
 

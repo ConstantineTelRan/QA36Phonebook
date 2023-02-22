@@ -22,10 +22,10 @@ public class ApiBase {
             .addHeader("Access-Token", API_KEY)
             .build();
 
-    public Response doPostRequest(EndPoint endPoint, int statusCode, Object dto) {
+    public Response doPostRequest(EndPoint endPoint, int statusCode, Object body) {
         Response response = RestAssured.given()
                 .spec(spec)
-                .body(dto)
+                .body(body)
                 .when()
                 .log().all()
                 .post(endPoint.getValue())
@@ -43,6 +43,47 @@ public class ApiBase {
                 .pathParam("id", id)
                 .log().all()
                 .delete(endPoint.getValue())
+                .then()
+                .log().all()
+                .extract().response();
+        response.then().assertThat().statusCode(statusCode);
+        return response;
+    }
+
+    public Response doGetRequest(EndPoint endPoint, int statusCode) {
+        Response response = RestAssured.given()
+                .spec(spec)
+                .when()
+                .log().all()
+                .get(endPoint.getValue())
+                .then()
+                .log().all()
+                .extract().response();
+        response.then().assertThat().statusCode(statusCode);
+        return response;
+    }
+
+    public Response doGetRequestWithParam(EndPoint endPoint, int statusCode, int id) {
+        Response response = RestAssured.given()
+                .spec(spec)
+                .when()
+                .pathParam("id", id)
+                .log().all()
+                .get(endPoint.getValue())
+                .then()
+                .log().all()
+                .extract().response();
+        response.then().assertThat().statusCode(statusCode);
+        return response;
+    }
+
+    public Response doPutRequest(EndPoint endPoint, int statusCode, Object body) {
+        Response response = RestAssured.given()
+                .spec(spec)
+                .body(body)
+                .when()
+                .log().all()
+                .put(endPoint.getValue())
                 .then()
                 .log().all()
                 .extract().response();
